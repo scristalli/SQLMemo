@@ -1,0 +1,8 @@
+Bundle-ClassPath: .
+Require-Bundle: oracle.ide,
+ oracle.ide.ceditor,
+ oracle.ide.webbrowser,
+ oracle.javamodel-rt,
+ oracle.javatools-nodeps,
+ oracle.sqldeveloper.worksheet,
+ oracle.javaxide

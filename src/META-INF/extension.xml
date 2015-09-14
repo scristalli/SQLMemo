@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension xmlns="http://jcp.org/jsr/198/extension-manifest" id="sqldevelopext.sqlmemo" version="1.0.0" esdk-version="1.0">
+    <name>SQLMemo</name>
+    <owner>Stefano Cristalli</owner>
+    <trigger-hooks xmlns="http://xmlns.oracle.com/ide/extension">
+        <triggers>
+            <actions xmlns="http://xmlns.oracle.com/jdeveloper/1013/extension">
+                <action id="sqldevelopext.sqlmemo.SQLMemoEnable">
+                    <properties>
+                        <property name="Name">Enable SQLMemo</property>
+                        <property name="SmallIcon">res:/sqldevelopext/sqlmemo/lightbulb_icon.png</property>
+                    </properties>
+                    <command-class>sqldevelopext.sqlmemo.SQLMemoEnableCommand</command-class>
+                </action>
+                <action id="sqldevelopext.sqlmemo.SQLMemoManage">
+                    <properties>
+                        <property name="Name">Manage...</property>
+                    </properties>
+                    <command-class>sqldevelopext.sqlmemo.SQLMemoManageCommand</command-class>
+                </action>
+            </actions>
+            <controllers xmlns="http://xmlns.oracle.com/ide/extension">
+                <controller class="sqldevelopext.sqlmemo.SQLMemoEnableController">
+                    <update-rules>
+                        <update-rule rule="always-enabled">
+                            <action id="sqldevelopext.sqlmemo.SQLMemoEnable">
+                                <label>Enable SQLMemo</label>
+                            </action>
+                        </update-rule>
+                    </update-rules>
+                </controller>
+                <controller class="sqldevelopext.sqlmemo.SQLMemoManageController">
+                    <update-rules>
+                        <update-rule rule="always-enabled">
+                            <action id="sqldevelopext.sqlmemo.SQLMemoManage">
+                                <label>Manage...</label>
+                            </action>
+                        </update-rule>
+                    </update-rules>
+                </controller>
+            </controllers>
+            <context-menu-hook rule="always-enabled">
+                <site idref="editor"/>
+                <extension-listener class="sqldevelopext.sqlmemo.SQLMemoContextMenuListener"></extension-listener>
+                <menu/>
+            </context-menu-hook>
+            <menu-hook xmlns="http://jcp.org/jsr/198/extension-manifest">
+                <toolbars>
+                    <toolbar id="javax.ide.view.MAIN_WINDOW_TOOLBAR_ID">
+                        <section id="javax.ide.tck.toolbar.testsection" after="javax.ide.NEW_SECTION_ID">
+                            <item action-ref="sqldevelopext.sqlmemo.SQLMemoEnable"></item>
+                        </section>
+                    </toolbar>
+                </toolbars>
+            </menu-hook>
+        </triggers>
+    </trigger-hooks>
+    <hooks>
+        <feature-hook>
+            <description>Memorize useful queries for quick use.</description>
+            <optional>true</optional>
+        </feature-hook>
+    </hooks>
+</extension>
